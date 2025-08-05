@@ -408,5 +408,5 @@ const products = [
     material: "Steel/Polyester",
     rate: 3.8
   }
-];
+]
 export default products

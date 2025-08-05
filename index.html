@@ -15,9 +15,14 @@
     <main>
         <section>
             <label for='query'></label>Look for a product?</label>
-            <input id='query' type='text' name='query' required minlength='1' maxlength='20' size='20'>
+            <input id='query' type='text' name='query'minlength='1' maxlength='20' size='20' placeholder='Type the name of a product'>
             <button id='ok'>
-                Ok
+                Find
+            </button>
+            <label for="price">Filter by price</label>
+            <input id='price' type='number' name='price' min='0' max='100000'>
+            <button id='price_button'>
+                Filter
             </button>
             <div>
                 <ul class="products">
