@@ -5,11 +5,13 @@ const findByNameButton = document.getElementById('ok')
 const containerProducts = document.querySelector('.products')
 const findByPriceButton = document.querySelector('#price_button')
 const priceInput = document.querySelector('#price')
+const sortButton = document.querySelector('#sort_button')
+let productsFiltered = []
 
 const renderProducts = (arrayOfProducts) => {
     containerProducts.innerHTML = ''
-    if(arrayOfProducts.length == 0 ){
-        containerProducts.innerHTML = 'There is no results for the search given'
+    if(arrayOfProducts.length == 0 || arrayOfProducts.includes(undefined)){
+        containerProducts.innerHTML = 'There is no results for the given search'
     }else{
         arrayOfProducts.forEach(product => {
             const li = document.createElement('li')
@@ -31,12 +33,11 @@ const renderProducts = (arrayOfProducts) => {
 findByNameButton.addEventListener('click',()=>{
     if(request.value){
         const query = request.value.toLowerCase()
-        console.log(query)
-            const productFound = products.find(product =>
+            productsFiltered.push(products.find(product =>
                 product.name.toLowerCase() === query
-            )|| []
-            console.log(productFound)
-            renderProducts([productFound])
+            ))
+            console.log(productsFiltered)
+            renderProducts(productsFiltered)
     }else{
         console.log(`Please type something`)
         containerProducts.innerHTML = 'Please type something'
@@ -44,11 +45,18 @@ findByNameButton.addEventListener('click',()=>{
 })
 findByPriceButton.addEventListener('click', ()=>{
     const valueRange = priceInput.value
-    console.log(valueRange)
-    const productsFilteredByPrice = products.filter(product =>
+    productsFiltered = products.filter(product =>
         product.price <= valueRange
     )
-    console.log(productsFilteredByPrice)
-    renderProducts(productsFilteredByPrice)
+    renderProducts(productsFiltered)
+})
+sortButton.addEventListener('click', ()=>{
+    if(productsFiltered.length == 0){
+        products.sort((productA, productB)=>productA.name.localeCompare(productB.name))
+        renderProducts(products)  
+    }else{
+        productsFiltered.sort((productA, productB)=>productA.name.localeCompare(productB.name))
+        renderProducts(productsFiltered)
+    }
 })
 renderProducts(products)
