@@ -31,7 +31,7 @@ You are given an array of products with attributes such as name, price, category
 
 ## 🖼️ Interface Screenshot
 
-![SPA Example](./2ea9e0a2-639c-4712-b5e1-f65ec116c588.png)
+![alt text](image.png)
 
 ---
 
